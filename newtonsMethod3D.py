@@ -94,3 +94,18 @@ def NewtonsMethod(coordinates):
         t3 += delta[2]
         
     return [t1,t2,t3]
+
+def convert(angles):
+    # needs input from Aduino to know where first angle is 
+    conversion = []
+    for i in range(1,len(angles)):
+        steps = []
+        for j in range(len(angles[i])):
+            step = (angles[i][j] - angles[i-1][j])*100/np.pi
+            if step % 1 < 0.5:
+                step = int(step)
+            else:
+                step = int(step) + 1
+            steps.append(step)
+        conversion.append(steps)
+    return conversion
